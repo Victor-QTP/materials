@@ -1,4 +1,4 @@
-# LoRA Vision Model Adaptation
+# LoRA Vision-Language Model Adaptation
 
 Parameter-efficient fine-tuning of vision-language detectors using LoRA on the first 10,000 images from BDD100K training set.
 
