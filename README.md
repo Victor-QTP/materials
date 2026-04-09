@@ -69,11 +69,18 @@ Parameter-efficient fine-tuning of OWLv2, OmDet-Turbo, and GroundingDINO on BDD1
 
 - [README](LoRA-vision-adaptation/README.md)
 
+## Training Curves
+
+**OWLv2** ([google/owlv2-base-patch16-ensemble](https://huggingface.co/google/owlv2-base-patch16-ensemble))
 [![OWLv2 Training Curves](LoRA-vision-adaptation/OWLv2_LoRA_checkpoints_text_frozen_b16_ciou_training_losses.png)](LoRA-vision-adaptation/OWLv2_LoRA_checkpoints_text_frozen_b16_ciou_training_losses.png)
 
+**OmDet-Turbo** ([omlab/omdet-turbo-swin-tiny-hf](https://huggingface.co/omlab/omdet-turbo-swin-tiny-hf))
 [![OmDet-Turbo Training Curves](LoRA-vision-adaptation/Omdet_LoRA_checkpoints_ciou_50epochs.png)](LoRA-vision-adaptation/Omdet_LoRA_checkpoints_ciou_50epochs.png)
 
+**Grounding DINO** ([IDEA-Research/grounding-dino-tiny](https://huggingface.co/IDEA-Research/grounding-dino-tiny))
 [![GroundingDINO Training Curves](LoRA-vision-adaptation/GroundingDINO_checkpoints_ciou_textfreeze_50epochs.png)](LoRA-vision-adaptation/GroundingDINO_checkpoints_ciou_textfreeze_50epochs.png)
+
+
 
 ---
 
