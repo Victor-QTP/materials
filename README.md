@@ -1,4 +1,4 @@
-# Materials — Autonomous Driving Perception Research
+# Materials - Autonomous Driving Perception Research
 
 Research portfolio and supplementary materials for open-vocabulary object detection, VLM-based auto-labeling, and parameter-efficient model adaptation for autonomous driving perception systems.
 
@@ -15,7 +15,7 @@ System architecture of the auto-labeling data engine.
 
 ---
 
-## 📁 UI — Auto-Labeling Interface
+## 📁 UI - Auto-Labeling Interface
 
 Gradio-based interface for open-vocabulary object detection and object captioning.
 
@@ -27,7 +27,7 @@ Gradio-based interface for open-vocabulary object detection and object captionin
 
 ---
 
-## 📁 Object Captioning — Qwen2-VL
+## 📁 Object Captioning - Qwen2-VL
 
 VLM-based semantic captioning with Qwen2-VL-7B on BDD100K scenes.
 
@@ -43,7 +43,7 @@ VLM-based semantic captioning with Qwen2-VL-7B on BDD100K scenes.
 
 ---
 
-## 📁 SAM3 — Zero-Shot Segmentation
+## 📁 SAM3 - Zero-Shot Segmentation
 
 Bounding box proposals from open-vocabulary detectors refined into pixel-level instance masks using SAM3.
 
@@ -96,14 +96,14 @@ Multimodal RAG vehicle search using CLIP embeddings, Qwen2-VL captioning, and Qd
 ## 📁 Awards & Certificates
 
 - [README](Awards_and_certificates/README.md)
-- 🏆 [Best Paper Award — ICICT 2026 (certificate, scanned PDF)](Awards_and_certificates/ICICT_26_BestPaperAward_r.pdf)
-- [Paper — ICICT 2026 (PDF)](Awards_and_certificates/icict2026-48.pdf)
+- 🏆 [Best Paper Award - ICICT 2026 (certificate, scanned PDF)](Awards_and_certificates/ICICT_26_BestPaperAward_r.pdf)
+- [Paper - ICICT 2026 (PDF)](Awards_and_certificates/icict2026-48.pdf)
 - [KIT Bio Tech & IT Spring School Certificate](Awards_and_certificates/Certificate_KIT_BioTech_IT_Spring_School%20.pdf)
 - [KIT Global Human Resource Development Certificate](Awards_and_certificates/KIT_Certificate%20of%20Completion_PHAN%20QUOC%20THANG.pdf)
 - [Yanmar Agri R&D Internship Certificate](Awards_and_certificates/Certificate-Yanmar.pdf)
 - [IELTS Certificate](Awards_and_certificates/IELTS-Thang0001.pdf)
 
-[![Best Paper Award — ICICT 2026](Awards_and_certificates/ICICT_26_bestpaper.jpg)](Awards_and_certificates/ICICT_26_bestpaper.jpg)
+[![Best Paper Award - ICICT 2026](Awards_and_certificates/ICICT_26_bestpaper.jpg)](Awards_and_certificates/ICICT_26_bestpaper.jpg)
 
 ---
 
