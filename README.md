@@ -16,7 +16,7 @@ A lightweight **YOLOv8-Nano** model was trained **entirely** on high-quality ann
 Currently running via the Ultralytics Python runtime.
 | Environment | Framework / Precision | Hardware | Inference Time | FPS |
 | :--- | :--- | :--- | :--- | :--- |
-| **Local Baseline** | PyTorch (.pt,auto) | RTX 3060 Mobile | ~4.5ms | **200 - 230 FPS** |
+| **Local Baseline** | PyTorch (.pt,auto) | RTX 3090 | ~4.5ms | **200 - 230 FPS** |
 | **Edge Target** | TensorRT (FP16) | Jetson Orin Nano 8GB | ~20-25ms | **~40 - 50 FPS** |
 
 ---
