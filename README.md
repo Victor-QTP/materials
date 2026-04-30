@@ -10,7 +10,7 @@ A lightweight **YOLOv8-Nano** model was trained **entirely** on high-quality ann
 
 [![YOLOv8 Nano Distillation Demo](https://img.youtube.com/vi/2HwbL51p-HM/0.jpg)](https://www.youtube.com/watch?v=2HwbL51p-HM)
 
-*(Click to watch the real-time inference demonstration)*
+*(Click on the image to watch the real-time inference demonstration)*
 
 ### Hardware Benchmarking & Edge Projections
 Currently running via the Ultralytics Python runtime.
