@@ -88,7 +88,7 @@ Parameter-efficient fine-tuning of OWLv2, OmDet-Turbo, and GroundingDINO on BDD1
 | OmDet-Turbo-Swin | 17.14% | **21.64%** | +4.50% |
 | GroundingDINO-tiny | 20.89% | **23.60%** | +2.71% |
 
-*mAP@300 (IoU 0.50:0.95), evaluated on BDD100K validation set.*
+*mAP@[0.50:0.95], evaluated on BDD100K validation set.*
 
 - [README](LoRA-vision-adaptation/README.md)
 
