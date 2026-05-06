@@ -106,14 +106,61 @@ Parameter-efficient fine-tuning of OWLv2, OmDet-Turbo, and GroundingDINO on BDD1
 
 
 ---
-
-## 📁 RAG Tutorial
-
-Multimodal RAG vehicle search using CLIP embeddings, Qwen2-VL captioning, and Qdrant vector store.
-
+ 
+## 📁 RAG Tutorial: Multimodal Vehicle Search System
+ 
+A production-ready **Multimodal Retrieval-Augmented Generation (RAG)** system for autonomous driving datasets, combining CLIP image-text embeddings, Qwen2-VL scene captioning, and Qdrant vector search. The system supports natural language queries over large collections of driving footage frames, with no fine-tuning required.
+ 
+### System Architecture
+ 
+| Component | Choice | Rationale |
+|-----------|--------|-----------|
+| Image Embeddings | CLIP ViT-g-14 (OpenCLIP) | 1024-dim unified image-text space; SOTA zero-shot retrieval |
+| Text Embeddings | Nomic-embed-text-v1.5 | 768-dim; optimized for semantic search |
+| VLM Captioner | Qwen2-VL-7B-Instruct | Efficient 7B model with strong scene understanding |
+| Vector Store | Qdrant | In-memory mode for prototyping, supports persistent storage for production |
+ 
+**Key design principle:** CLIP image and text embeddings share the same 1024-dimensional vector space, enabling direct cross-modal similarity search with no intermediate mapping layer.
+ 
+### Capabilities
+ 
+- **Natural language search**: query driving scenes with text prompts ("yellow taxi", "pedestrians crossing at night")
+- **Scene captioning**: auto-generate structured descriptions of each frame via Qwen2-VL-7B
+- **Grounded Q&A chatbot**: answer questions about specific traffic situations using retrieved visual context, reducing VLM hallucinations
+- **Dual-index retrieval**: fuses image similarity (CLIP) and text similarity (Nomic-embed) for robust ranked results
+### Demo
+ 
+**Query**: *"What vehicles are in the image with the yellow taxi?"*
+ 
+[![RAG Demo - Retrieved Scene](RAG_tutorial/rag_demo_yellow_taxi.png)](RAG_tutorial/rag_demo_yellow_taxi.png)
+ 
+**Retrieved scene** (frame_3800): The image depicts a bustling urban street with a yellow taxi, several cars, a motorcycle, and various storefronts and signs.
+ 
+**Answer**: In the image with the yellow taxi, there are several cars and a motorcycle.
+ 
+### Production Scaling Path
+ 
+The current implementation runs Qdrant in-memory mode. To scale to 100K+ frames:
+ 
+```python
+# Persistent storage
+client = QdrantClient(path="./qdrant_data")
+ 
+# Batched ingestion
+for batch in chunked(image_paths, batch_size=1000):
+    image_db.add_images(batch, ...)
+```
+ 
+### Applications
+ 
+- **Dataset exploration**: "Find all scenes with construction zones"
+- **Anomaly detection**: retrieve rare or unusual driving scenarios
+- **Annotation assistance**: auto-label images as input to the Data Engine
+- **Failure analysis**: query specific edge cases for model debugging
+### Links
+ 
 - [Notebook](RAG_tutorial/vehicle_search_VLM_tutorial.ipynb)
 - [Requirements](RAG_tutorial/requirements.txt)
-
 ---
 
 ## 📁 Awards & Certificates
