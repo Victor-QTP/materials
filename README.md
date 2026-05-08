@@ -26,6 +26,29 @@ Video credit:
 
 ---
 
+### Domain Transfer: Biomedical Imagery (Phase-Contrast Stem Cells)
+
+The same distillation pipeline generalizes beyond autonomous driving. Applied to noisy phase-contrast microscopy imagery (stem cell cultures), with no manual annotation and no domain-specific retraining.
+
+[![YOLOv8n Cell Detector](https://img.youtube.com/vi/O2x_RBgCVEg/0.jpg)](https://www.youtube.com/watch?v=O2x_RBgCVEg)
+
+[https://www.youtube.com/watch?v=O2x_RBgCVEg](https://www.youtube.com/watch?v=O2x_RBgCVEg)
+
+*(Click on the image or YouTube link to watch the real-time inference demonstration)*
+
+### Hardware Benchmarking & Edge Projections
+Currently running via the Ultralytics Python runtime.
+| Environment | Framework / Precision | Hardware | Avg. Inference Time | Avg. FPS |
+| :--- | :--- | :--- | :--- | :--- |
+| **Local Baseline** | PyTorch (.pt, auto) | RTX 3090 | 4.4 ms | **226.1 FPS** |
+| **Edge Target** | TensorRT (FP16) | Jetson Orin Nano 8GB | ~22-26 ms | **~38-45 FPS** |
+
+Video credit:
+[https://www.drsignal.com.tw/zh-hant-tw/tech-bio](https://www.drsignal.com.tw/zh-hant-tw/tech-bio)
+
+[https://www.drsignal.com.tw/media/2024assist/20240702/media/%E7%B4%B0%E8%83%9E2_1920x1080.mp4](https://www.drsignal.com.tw/media/2024assist/20240702/media/%E7%B4%B0%E8%83%9E2_1920x1080.mp4)
+
+---
 
 ## 📁 Data Engine
 
