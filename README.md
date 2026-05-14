@@ -9,9 +9,10 @@ A lightweight **YOLOv8-Nano** model was trained **entirely** on high-quality ann
 
 [![YOLOv8 Nano Distillation Demo](https://img.youtube.com/vi/IwheZKmN6Q8/0.jpg)](https://www.youtube.com/watch?v=IwheZKmN6Q8)
 
+**Pytorch GPU Runtime Demo:**
 [https://www.youtube.com/watch?v=Om5kYzBqwuw](https://www.youtube.com/watch?v=Om5kYzBqwuw)
 
-**ONNX Runtime Demo:**  
+**ONNX GPU Runtime Demo:**  
 [https://www.youtube.com/watch?v=IwheZKmN6Q8](https://www.youtube.com/watch?v=IwheZKmN6Q8)
 
 *(Click on the image or YouTube link to watch the real-time inference demonstration)*
@@ -41,7 +42,7 @@ The same distillation pipeline generalizes beyond autonomous driving. Applied to
 **Pytorch GPU Runtime Demo:**
 [https://www.youtube.com/watch?v=O2x_RBgCVEg](https://www.youtube.com/watch?v=O2x_RBgCVEg)
 
-**ONNX Runtime Demo:**  
+**ONNX GPU Runtime Demo:**  
 [https://www.youtube.com/watch?v=d-_cQpRhm0o](https://www.youtube.com/watch?v=d-_cQpRhm0o)
 
 *(Click on the image or YouTube link to watch the real-time inference demonstration)*
