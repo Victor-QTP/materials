@@ -15,7 +15,8 @@ An adaptive ensemble of open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding
 **Does the output actually work?**
 
 - **Label quality:** ~96% of the mAP of a fully supervised Cascade R-CNN (ConvNeXt-B) on BDD100K-val, training-free, with zero human labels. Consistent gains on CODA2022, BDD100K, and nuImages with the same pipeline and config (exact figures in the paper).
-- **Downstream validation:** a YOLOv8m trained *purely* on engine-generated labels recovers **~65%** of the mAP of its GT-trained counterpart and **surpasses it in recall (mAR)**, i.e., it finds more real objects than the model trained on human annotations.
+
+- **Downstream validation:** A YOLOv8m trained *purely* on engine-generated labels recovers **~65% of the 29.2 mAP** of its GT-trained counterpart and **surpasses it in mAR by ~15% (42.58 vs. 36.40)**, i.e., it detects more real objects than the model trained on human annotations.
 
 **How the pipeline works:**
 
