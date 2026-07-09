@@ -19,9 +19,9 @@ An adaptive ensemble of open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding
 
 **How the pipeline works:**
 
-1. **Detect:** the adaptive ensemble proposes bounding boxes and open-vocabulary labels for every object in the frame
-2. **Refine:** [SAM3](SAM3/README.md) upgrades the box proposals into precise pixel-level instance masks
-3. **Describe:** [QwenVL](Object_captioning_Qwen2VL/README.md) generates a semantic caption for each detected object
+1. **Detect:** the adaptive ensemble fuses box proposals and open-vocabulary labels from all four detectors. This fused detection output alone is what the label-quality numbers above measure.
+2. **Extend to masks:** [SAM3](SAM3/README.md), used this time as a promptable segmentation model rather than a detector, converts the fused boxes into pixel-level instance masks, turning the detection labels into segmentation labels
+3. **Extend to captions:** [QwenVL](Object_captioning_Qwen2VL/README.md) adds a semantic caption to each detected object
 
 Full architecture documentation: [Data Engine README](Data_engine/README.md) ([PDF overview](Data_engine/System_overview.pdf)). The whole pipeline is operated through a [Gradio auto-labeling UI](UI/README.md) with 1-click annotation generation, ontology testing, and caption generation, running on a single 24 GB GPU.
 
