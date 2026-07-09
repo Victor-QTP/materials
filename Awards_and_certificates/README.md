@@ -4,7 +4,7 @@
 **International Conference on Information and Computer Technologies**
 Honolulu, HI, USA · March 2026
 
-📄 [View Certificate (on-site photo)](ICICT_26_bestpaper.jpg)
+📄 [View Certificate (on-site photo)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Awards_and_certificates/ICICT_26_bestpaper.jpg)
 📄 [View Certificate (scanned PDF)](ICICT_26_BestPaperAward_r.pdf)
 📄 [View paper (PDF)](icict2026-48.pdf)
 ---

@@ -31,10 +31,10 @@ Evaluated on **BDD100K validation set**.
 ## Training Curves
 
 **OWLv2** ([google/owlv2-base-patch16-ensemble](https://huggingface.co/google/owlv2-base-patch16-ensemble))
-![OWLv2 Training](OWLv2_LoRA_checkpoints_text_frozen_b16_ciou_training_losses.png)
+![OWLv2 Training](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/OWLv2_LoRA_checkpoints_text_frozen_b16_ciou_training_losses.png)
 
 **OmDet-Turbo** ([omlab/omdet-turbo-swin-tiny-hf](https://huggingface.co/omlab/omdet-turbo-swin-tiny-hf))
-![OmDet Training](Omdet_LoRA_checkpoints_ciou_50epochs.png)
+![OmDet Training](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/Omdet_LoRA_checkpoints_ciou_50epochs.png)
 
 **Grounding DINO** ([IDEA-Research/grounding-dino-tiny](https://huggingface.co/IDEA-Research/grounding-dino-tiny))
-![GDINO Training](GroundingDINO_checkpoints_ciou_textfreeze_50epochs.png)
+![GDINO Training](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/GroundingDINO_checkpoints_ciou_textfreeze_50epochs.png)
