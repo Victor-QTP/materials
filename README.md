@@ -25,7 +25,7 @@ An adaptive ensemble of open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding
 
 Full architecture documentation: [Data Engine README](Data_engine/README.md) ([PDF overview](Data_engine/System_overview.pdf)). The whole pipeline is operated through a [Gradio auto-labeling UI](UI/README.md) with 1-click annotation generation, ontology testing, and caption generation, running on a single 24 GB GPU.
 
-| Detections (ensemble) | Instance masks (SAM3) |
+| Detections (ensemble) & captions | Instance masks (SAM3) |
 | :---: | :---: |
 | [![Input (detection)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410.png) | [![Output (SAM3 masks)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410_SAM3.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410_SAM3.png) |
 
