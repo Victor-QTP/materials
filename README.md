@@ -2,7 +2,7 @@
 
 I built a **training-free data engine** that auto-labels driving datasets at **~96% of the accuracy of a fully supervised detector** (BDD100K-val, vs. GT-trained Cascade R-CNN ConvNeXt-B) with **zero human annotation**, and distilled its output into a YOLOv8n detector running at **814.7 FPS** (TensorRT FP16, RTX 3090). The same engine generalizes out-of-domain: it labeled phase-contrast microscopy imagery with no manual annotation and no domain-specific tuning.
 
-**Quoc-Thang Phan (Victor)**, Computer Vision & Multimodal AI Engineer | [Best Paper Award - ICICT 2026](https://dl.acm.org/doi/10.1145/3803291.3803339) (Honolulu, HI, USA)
+**Quoc-Thang Phan (Victor)**, Computer Vision & Multimodal AI Engineer
 
 ---
 
