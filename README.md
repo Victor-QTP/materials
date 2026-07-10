@@ -14,7 +14,7 @@ An adaptive ensemble of open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding
 
 **Does the output actually work?**
 
-- **Label quality:** ~96% of the mAP of a fully supervised Cascade R-CNN (ConvNeXt-B) on BDD100K-val, training-free, with zero human labels. Consistent gains on CODA2022, BDD100K, and nuImages with the same pipeline and config (exact figures in the paper).
+- **Label quality:** ~96% of the mAP of a fully supervised [Cascade R-CNN (ConvNeXt-B)](https://github.com/SysCV/bdd100k-models/blob/main/det/README.md) on BDD100K-val, training-free, with zero human labels. Consistent gains on CODA2022, BDD100K, and nuImages with the same pipeline and config (exact figures in the paper).
 
 **How the pipeline works:**
 
