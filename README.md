@@ -78,8 +78,7 @@ Fine-tuned three open-vocabulary detector architectures (OWLv2, OmDet-Turbo, Gro
 - [README](LoRA-vision-adaptation/README.md)
 
 ### VLM Captioner Distillation: Generalist → Driving Specialist
-
-Distilled a large generalist VLM into a compact driving-domain specialist: the 32B teacher captions objects detected by our ensemble on KITTI, and these caption-crop pairs are used to LoRA-finetune the 8B student, yielding a lightweight captioner that verifies detector-predicted labels by describing each detected object.
+A lightweight module that verifies detector-predicted labels by describing each detected object. I distill the 32B QwenVL3 teacher's captions of the objects detected by our ensemble on KITTI. These caption-crop pairs are used to LoRA-finetune the 8B student. Improved BLEU-4, ROUGE-L and CIDEr by +0.23, +0.20 and +1.94.
 
 **Table 4. VLM Captioner Distillation (32B teacher → 8B student) on KITTI**
 
