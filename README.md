@@ -1,4 +1,4 @@
-# Zero-Shot Auto-Labeling & Edge Deployment for Autonomous Driving Perception
+# Recent Project: Zero-Shot Auto-Labeling & Edge Deployment for Autonomous Driving Perception
 
 The training-free data engine that auto-labels driving datasets at **~96% of the mean Average Precision (mAP@[0.50:0.95]) of a fully supervised detector** (BDD100K-val, vs. GT-trained Cascade R-CNN ConvNeXt-B) with **zero human annotation**. I use the generated annotations to train a YOLOv8n detector running at **814.7 FPS*** (TensorRT FP16, RTX 3090) on the self-driving domain. The same engine generalizes out-of-domain: it labeled phase-contrast microscopy imagery with no manual annotation and no domain-specific tuning.
 
@@ -8,7 +8,7 @@ The training-free data engine that auto-labels driving datasets at **~96% of the
 
 ## 1. The Data Engine: Training-Free Auto-Labeling
 
-An adaptive ensemble of open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding DINO, SAM3) that turns raw driving footage into training-ready annotations (bounding boxes, labels, captions, and instance masks) with no training and no per-dataset tuning.
+A learned ensemble of open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding DINO, SAM3) that turns raw driving footage into training-ready annotations (bounding boxes, labels, captions, and instance masks) with no training and no per-dataset tuning.
 
 [![System Overview](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Data_engine/System_overview.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Data_engine/System_overview.png)
 
@@ -18,7 +18,7 @@ An adaptive ensemble of open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding
 
 **How the pipeline works:**
 
-1. **Detect:** the adaptive ensemble fuses box proposals and open-vocabulary labels from all four detectors. This fused detection output alone is what the label-quality numbers above measure.
+1. **Detect:** the learned ensemble fuses box proposals and open-vocabulary labels from all four detectors. This fused detection output alone is what the label-quality numbers above measure.
 2. **Extend to masks:** [SAM3](SAM3/README.md), used this time as a promptable segmentation model rather than a detector, converts the fused boxes into pixel-level instance masks, turning the detection labels into segmentation labels
 3. **Extend to captions:** [QwenVL](Object_captioning_Qwen2VL/README.md) adds a semantic caption to each detected object
 
