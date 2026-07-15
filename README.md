@@ -1,28 +1,35 @@
 # Recent Project: Zero-Shot Auto-Labeling & Edge Deployment for Autonomous Driving Perception
 
-The training-free data engine that auto-labels driving datasets at **~96% of the mean Average Precision (mAP@[0.50:0.95]) of a fully supervised detector** (BDD100K-val, vs. GT-trained Cascade R-CNN ConvNeXt-B) with **zero human annotation**. I use the generated annotations to train a YOLOv8n detector running at **814.7 FPS*** (TensorRT FP16, RTX 3090) on the self-driving domain. The same engine generalizes out-of-domain: it labeled phase-contrast microscopy imagery with no manual annotation and no domain-specific tuning.
+**A training-free data engine that labels driving datasets with zero human annotation.**
+
+- **~96% of human-label quality:** the engine's labels nearly match those of human annotators (BDD100K, evidence in Section 1)
+- **814.7 FPS on an RTX 3090:** a real-time detector trained purely on the engine's labels, no human labels anywhere in the loop (Section 2)
+- **Works beyond driving, unchanged:** the same engine labeled biomedical microscopy imagery with zero tuning (Section 3)
 
 **Quoc-Thang Phan (Victor)**, Computer Vision & Multimodal AI Engineer
+[quocthang.phan.0430@gmail.com](mailto:quocthang.phan.0430@gmail.com) | [LinkedIn](https://www.linkedin.com/in/victor-quoc-thang-phan-60b932300)
 
 ---
 
 ## 1. The Data Engine: Training-Free Auto-Labeling
 
-A learned ensemble of open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding DINO, SAM3) that turns raw driving footage into training-ready annotations (bounding boxes, labels, captions, and instance masks) with no training and no per-dataset tuning.
+**Raw driving footage in, training-ready annotations out.** A training-free **ensemble learning** system fuses four open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding DINO, SAM3) into boxes, labels, instance masks, and captions. No training, no per-dataset tuning.
 
 [![System Overview](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Data_engine/System_overview.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Data_engine/System_overview.png)
 
 **Does the output actually work?**
 
-- **Label quality:** ~96% of the mAP@[0.50:0.95] of a fully supervised [Cascade R-CNN (ConvNeXt-B)](https://github.com/SysCV/bdd100k-models/blob/main/det/README.md) on BDD100K-val, training-free, with zero human labels. Consistent gains on CODA2022, BDD100K, and nuImages with the same pipeline and config.
+- **~96% of human-label quality, zero human labels:** the engine's annotations score within ~4% of a fully supervised [Cascade R-CNN (ConvNeXt-B)](https://github.com/SysCV/bdd100k-models/blob/main/det/README.md) trained on human-annotated ground truth (BDD100K-val, 34.31 mAP).
+- **Beats the standard fusion method:** 34.31 vs. 32.70 mAP for Weighted Boxes Fusion on BDD100K-val.
+- **Strong where labels are hardest to get:** on CODA2022 (rare road-hazard corner cases), the engine recovers far more of the hard objects than the strongest single model (62.77 vs. 44.55 mAR for SAM3) and improves precision (21.71 mAP, +2.10 over SAM3).
 
 **How the pipeline works:**
 
-1. **Detect:** the learned ensemble fuses box proposals and open-vocabulary labels from all four detectors. This fused detection output alone is what the label-quality numbers above measure.
-2. **Extend to masks:** [SAM3](SAM3/README.md), used this time as a promptable segmentation model rather than a detector, converts the fused boxes into pixel-level instance masks, turning the detection labels into segmentation labels
+1. **Detect:** the training-free ensemble fuses box proposals and open-vocabulary labels from all four detectors. This fused detection output alone is what the label-quality numbers above measure.
+2. **Extend to masks:** [SAM3](SAM3/README.md), now as a promptable segmenter rather than a detector, turns the fused boxes into pixel-level instance masks
 3. **Extend to captions:** [QwenVL](Object_captioning_Qwen2VL/README.md) adds a semantic caption to each detected object
 
-Full architecture documentation: [Data Engine README](Data_engine/README.md) ([PDF overview](Data_engine/System_overview.pdf)). The whole pipeline is operated through a [Gradio auto-labeling UI](UI/README.md) with 1-click annotation generation, ontology testing, and caption generation, running on a single 24 GB GPU.
+**The whole pipeline runs on a single 24 GB GPU** through a [Gradio auto-labeling UI](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/UI/UI_demo.png): 1-click annotation, ontology testing, and captioning. Full architecture: [Data Engine README](Data_engine/README.md) ([PDF overview](Data_engine/System_overview.pdf)).
 
 | Detections (ensemble) & captions | Instance masks (SAM3) |
 | :---: | :---: |
@@ -39,7 +46,7 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 | **PyTorch (.pt)** | FP32 | RTX 3090 | 4.9 ms | **205.6 FPS** |
 | **ONNX Runtime** | FP32 | RTX 3090 | 2.9 ms | **345.3 FPS** |
 | **TensorRT** | FP16 | RTX 3090 | 1.2 ms | **814.7 FPS** |
-| **Edge Target** | FP16 | Jetson Orin Nano 8GB | ~22-26 ms | **~38-45 FPS** |
+| **Edge Target** | FP16 | Jetson Orin Nano 8GB | ~22-26 ms | **~38-45 FPS** (projected) |
 
 **Real-time inference demos:** [TensorRT](https://www.youtube.com/watch?v=MUm59Mw1z0E) | [ONNX Runtime](https://www.youtube.com/watch?v=e6DNVmk0I_g) | [PyTorch](https://www.youtube.com/watch?v=Om5kYzBqwuw)
 
@@ -51,7 +58,7 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 
 ## 3. Domain Transfer: Zero-Shot Generalization to Biomedical Imagery
 
-The same engine, unchanged, labeled noisy **phase-contrast microscopy** (stem cell cultures) with no manual annotation and no domain-specific tuning. A YOLOv8-Nano distilled from those labels runs at **820.8 FPS** (TensorRT FP16, RTX 3090; same optimization pipeline and Jetson target as above).
+**The same engine, unchanged,** labeled noisy **phase-contrast microscopy** (stem cell cultures) with no manual annotation and no domain-specific tuning. A YOLOv8-Nano distilled from those labels runs at **820.8 FPS** (TensorRT FP16, RTX 3090, same optimization pipeline and Jetson target as above).
 
 **Cell detection demos:** [TensorRT](https://www.youtube.com/watch?v=wP3FX8Q1Qn0) | [ONNX Runtime](https://www.youtube.com/watch?v=E8D2qqdhG7I) | [PyTorch](https://www.youtube.com/watch?v=O2x_RBgCVEg)
 
@@ -63,9 +70,9 @@ The same engine, unchanged, labeled noisy **phase-contrast microscopy** (stem ce
 
 ## 4. Optional Specialization: LoRA Adaptation & VLM Label Verification
 
-The engine is training-free; LoRA is an **optional** layer for squeezing out extra domain performance.
+The engine is training-free. LoRA is an **optional** layer for squeezing out extra domain performance.
 
-Fine-tuned three open-vocabulary detector architectures (OWLv2, OmDet-Turbo, Grounding DINO) with LoRA adapters, freezing text encoders to preserve open-vocabulary capability. The goal is to create specialists. Improved detection by +7.18, +4.50, and +2.71 mAP, respectively, on BDD100K-val.
+- **Detector specialists:** LoRA-adapted three open-vocabulary detector architectures (OWLv2, OmDet-Turbo, Grounding DINO), freezing text encoders to preserve open-vocabulary capability. **+7.18, +4.50, and +2.71 mAP** respectively on BDD100K-val.
 
 | Model | Baseline | After LoRA | Δ |
 |-------|----------|------------|---|
@@ -78,9 +85,9 @@ Fine-tuned three open-vocabulary detector architectures (OWLv2, OmDet-Turbo, Gro
 - [README](LoRA-vision-adaptation/README.md)
 
 ### VLM Captioner Distillation: Generalist → Driving Specialist
-A lightweight module that verifies detector-predicted labels by describing each detected object. I distill the 32B QwenVL3 teacher's captions of the objects detected by our ensemble on KITTI. These caption-crop pairs are used to LoRA-finetune the 8B student. Improved BLEU-4, ROUGE-L and CIDEr by +0.23, +0.20 and +1.94.
+- **Label verification:** a lightweight module that verifies detector-predicted labels by describing each detected object. I distill the 32B QwenVL3 teacher's captions of the objects detected by our ensemble on KITTI, then use these caption-crop pairs to LoRA-finetune the 8B student. **Tripled BLEU-4 (0.11 → 0.34) and nearly tripled CIDEr (1.07 → 3.01)**, with ROUGE-L up from 0.32 to 0.52.
 
-**Table 4. VLM Captioner Distillation (32B teacher → 8B student) on KITTI**
+**VLM Captioner Distillation (32B teacher → 8B student) on KITTI**
 
 | Metric | Before | After | Δ |
 |--------|--------|-------|---|
@@ -108,7 +115,11 @@ A lightweight module that verifies detector-predicted labels by describing each 
 
 ## 5. Multimodal RAG: Rare Scenario & Object Finder
 
-Natural-language search over unannotated driving footage: no fine-tuning, no manual browsing of 100K+ frames. Two parallel Qdrant indexes (CLIP ViT-g-14 image embeddings + Nomic text embeddings over QwenVL captions) fused into ranked results, with grounded Q&A over the retrieved frames.
+**Natural-language search over unannotated driving footage: no fine-tuning, no manual browsing of 100K+ frames.** Two parallel Qdrant indexes (CLIP ViT-g-14 image embeddings + Nomic text embeddings over QwenVL captions) fused into ranked results, with grounded Q&A over the retrieved frames.
+
+[![RAG Architecture](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/rag_architecture.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/rag_architecture.png)
+
+*Three-stage architecture as run in the demo below: CLIP retrieval finds the rare scene, QwenVL captions and answers over it, and retrieved frames feed the auto-labeling engine (Section 1), focusing labeling effort on rare objects.*
 
 **Query:** *"What vehicles are in the image with the yellow taxi?"*
 
