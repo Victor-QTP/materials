@@ -119,7 +119,7 @@ Results are per detector. Creating and fusing the specialists into the engine is
 
 **Natural-language search over unannotated driving footage: no fine-tuning, no manual browsing of 100K+ frames.** Two parallel Qdrant indexes (CLIP ViT-g-14 image embeddings + Nomic text embeddings over QwenVL captions) fused into ranked results, with grounded Q&A over the retrieved frames.
 
-[![RAG Architecture](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/rag_architecture.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/rag_architecture.png)
+[![RAG Architecture](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/ExtensionB_Pipeline.PNG)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/ExtensionB_Pipeline.PNG)
 
 *Three-stage architecture as run in the demo below: CLIP retrieval finds the rare scene, QwenVL captions and answers over it, and retrieved frames feed the auto-labeling engine (Section 1), focusing labeling effort on rare objects.*
 
