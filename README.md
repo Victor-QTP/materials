@@ -13,7 +13,7 @@
 
 ## 1. The Data Engine: Training-Free Auto-Labeling
 
-**Raw driving footage in, training-ready annotations out.** A training-free **ensemble learning** system fuses four open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding DINO, SAM3) into boxes, labels, instance masks, and captions. No training, no per-dataset tuning.
+**Raw footage in, training-ready annotations out.** A training-free **ensemble learning** system fuses four open-vocabulary detectors (OWLv2, OmDet-Turbo, Grounding DINO, SAM3) into boxes, labels, instance masks, and captions. No training, no per-dataset tuning.
 
 [![System Overview](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Data_engine/System_overview.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Data_engine/System_overview.png)
 
@@ -71,6 +71,8 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 ## 4. Optional Specialization: LoRA Adaptation & VLM Label Verification
 
 The engine is training-free. LoRA is an **optional** layer for squeezing out extra domain performance.
+
+Results are per detector. Creating and fusing the specialists into the engine is **future work, since a fused system with specialists would no longer be training-free.**
 
 - **Detector specialists:** LoRA-adapted three open-vocabulary detector architectures (OWLv2, OmDet-Turbo, Grounding DINO), freezing text encoders to preserve open-vocabulary capability. **+7.18, +4.50, and +2.71 mAP** respectively on BDD100K-val.
 
