@@ -2,9 +2,9 @@
 
 **A training-free data engine that labels driving datasets with zero human annotation.**
 
-- **~96% of human-label quality:** the engine's labels nearly match those of human annotators (BDD100K, evidence in Section 1)
-- **814.7 FPS on an RTX 3090:** a real-time detector trained purely on the engine's labels, no human labels anywhere in the loop (Section 2)
-- **Works beyond driving, unchanged:** the same engine labeled biomedical microscopy imagery with zero tuning (Section 3)
+- **~96% of human-label quality:** the engine's labels nearly match those of human annotators (BDD100K, evidence in [Section 1](#1-the-data-engine-training-free-auto-labeling))
+- **814.7 FPS on an RTX 3090:** a real-time detector trained purely on the engine's labels, no human labels anywhere in the loop ([Section 2](#2-edge-deployment-distilled-yolov8-real-time-inference))
+- **Works beyond driving, unchanged:** the same engine labeled biomedical microscopy imagery with zero tuning ([Section 3](#3-domain-transfer-zero-shot-generalization-to-biomedical-imagery))
 
 **Quoc-Thang Phan (Victor)**, Computer Vision & Multimodal AI Engineer
 [quocthang.phan.0430@gmail.com](mailto:quocthang.phan.0430@gmail.com) | [LinkedIn](https://www.linkedin.com/in/victor-quoc-thang-phan-60b932300)
