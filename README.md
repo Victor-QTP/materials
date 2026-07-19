@@ -139,6 +139,7 @@ Results are per detector. Creating and fusing the specialists into the engine is
 ## Awards & Certificates
 
 [**Best Paper Award, ICICT 2026 (Honolulu, HI, USA)**](https://dl.acm.org/doi/10.1145/3803291.3803339)
+
 [Paper](https://dl.acm.org/doi/10.1145/3803291.3803339) | [Certificate](Awards_and_certificates/ICICT_26_BestPaperAward_r.pdf)
 
 [![Best Paper Award - ICICT 2026](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Awards_and_certificates/ICICT_26_bestpaper.jpg)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Awards_and_certificates/ICICT_26_bestpaper.jpg)
