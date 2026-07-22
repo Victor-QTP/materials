@@ -5,9 +5,23 @@
 - **~96% of human-label quality:** the engine's labels nearly match those of human annotators (BDD100K, evidence in [Section 1](#1-the-data-engine-training-free-auto-labeling))
 - **814.7 FPS on an RTX 3090:** a real-time detector trained purely on the engine's labels, no human labels anywhere in the loop ([Section 2](#2-edge-deployment-distilled-yolov8-real-time-inference))
 - **Works beyond driving, unchanged:** the same engine labeled biomedical microscopy imagery with zero tuning ([Section 3](#3-domain-transfer-zero-shot-generalization-to-biomedical-imagery))
+- **Extends to metric 3D, still training-free:** detections lifted to positions in meters by composing frozen models, validated on ~32K cars ([Section 4](#4-metric-3d-localization-one-camera-no-lidar-no-calibration))
 
 **Quoc-Thang Phan (Victor)**, Computer Vision & Multimodal AI Engineer
 [quocthang.phan.0430@gmail.com](mailto:quocthang.phan.0430@gmail.com) | [LinkedIn](https://www.linkedin.com/in/victor-quoc-thang-phan-60b932300)
+
+---
+
+## Table of Contents
+
+1. [The Data Engine: Training-Free Auto-Labeling](#1-the-data-engine-training-free-auto-labeling)
+2. [Edge Deployment: Distilled YOLOv8 Real-Time Inference](#2-edge-deployment-distilled-yolov8-real-time-inference)
+3. [Domain Transfer: Zero-Shot Generalization to Biomedical Imagery](#3-domain-transfer-zero-shot-generalization-to-biomedical-imagery)
+4. [Metric 3D Localization: One Camera, No LiDAR, No Calibration](#4-metric-3d-localization-one-camera-no-lidar-no-calibration)
+5. [Optional Specialization: LoRA Adaptation & VLM Captioner Distillation](#5-optional-specialization-lora-adaptation--vlm-captioner-distillation)
+6. [Multimodal RAG: Rare Scenario & Object Finder](#6-multimodal-rag-rare-scenario--object-finder)
+7. [Awards & Certificates](#awards--certificates)
+8. [License](#license)
 
 ---
 
@@ -68,8 +82,33 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 
 ---
 
-## 4. Optional Specialization: LoRA Adaptation & VLM Label Verification
+## 4. Metric 3D Localization: One Camera, No LiDAR, No Calibration
 
+*Independent extension (July 2026), built after and on top of the project above.*
+
+**A single ordinary camera is enough.** 2D detections are lifted to **3D positions in meters** from monocular dashcam footage: no LiDAR, no stereo, no calibration files, no training. Camera parameters are estimated from the images themselves.
+
+1. **Input:** 2D detection results, boxes and instance masks, from any detector (this demo uses SAM3)
+2. **Depth:** a frozen [Depth Anything 3](https://github.com/ByteDance-Seed/Depth-Anything-3) model produces a metric depth map and estimated camera intrinsics for each frame
+3. **Lift:** object distance = median depth over its mask pixels. Back-projecting the mask centroid through the estimated intrinsics gives the 3D position in meters.
+[![3D Localization Demo - live bird's-eye-view map - YouTube](https://img.youtube.com/vi/896trvifKMw/0.jpg)](https://www.youtube.com/watch?v=896trvifKMw)
+
+**Qualitative demo**
+[![Qualitative demo](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/20260722_032551.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/20260722_032551.png)
+
+
+**Validation, no ground truth needed:** across **32,149 cars**, estimated width: **1.69 m**.
+
+[![Car width validation](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/car_width_hist.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/car_width_hist.png)
+
+**Scope:** 3D localization, not full 3D detection. No yaw. Training-free routes to full boxes (pseudo-LiDAR L-shape fitting on the mask point clouds, VLM viewpoint binning): future work.
+
+*DA3 weights are CC BY-NC 4.0. This repo's code stays MIT.*
+
+---
+
+## 5. Optional Specialization: LoRA Adaptation & VLM Captioner Distillation
+*Independent (June 2026)*
 The engine is training-free. LoRA is an **optional** layer for squeezing out extra domain performance.
 
 Results are per detector. Creating and fusing the specialists into the engine is **future work, since a fused system with specialists would no longer be training-free.**
@@ -87,7 +126,8 @@ Results are per detector. Creating and fusing the specialists into the engine is
 - [README](LoRA-vision-adaptation/README.md)
 
 ### VLM Captioner Distillation: Generalist → Driving Specialist
-- **Label verification:** a lightweight module that verifies detector-predicted labels by describing each detected object. I distill the 32B QwenVL3 teacher's captions of the objects detected by our ensemble on KITTI, then use these caption-crop pairs to LoRA-finetune the 8B student. **Tripled BLEU-4 (0.11 → 0.34) and nearly tripled CIDEr (1.07 → 3.01)**, with ROUGE-L up from 0.32 to 0.52.
+*Independent (June 2026)*
+- **Caption-based label verification:** a lightweight module that verifies detector-predicted labels by describing each detected object. I distill the 32B QwenVL3 teacher's captions of the objects detected by our ensemble on KITTI, then use these caption-crop pairs to LoRA-finetune the 8B student. **Tripled BLEU-4 (0.11 → 0.34) and nearly tripled CIDEr (1.07 → 3.01)**, with ROUGE-L up from 0.32 to 0.52.
 
 **VLM Captioner Distillation (32B teacher → 8B student) on KITTI**
 
@@ -115,8 +155,8 @@ Results are per detector. Creating and fusing the specialists into the engine is
 
 ---
 
-## 5. Multimodal RAG: Rare Scenario & Object Finder
-
+## 6. Multimodal RAG: Rare Scenario & Object Finder
+*Independent extension (May 2026)*
 **Natural-language search over unannotated driving footage: no fine-tuning, no manual browsing of 100K+ frames.** Two parallel Qdrant indexes (CLIP ViT-g-14 image embeddings + Nomic text embeddings over QwenVL captions) fused into ranked results, with grounded Q&A over the retrieved frames.
 
 [![RAG Architecture](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/ExtensionB_Pipeline.PNG)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/ExtensionB_Pipeline.PNG)
