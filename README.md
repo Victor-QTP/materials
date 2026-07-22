@@ -91,10 +91,10 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 1. **Input:** 2D detection results, boxes and instance masks, from any detector (this demo uses SAM3)
 2. **Depth:** a frozen [Depth Anything 3](https://github.com/ByteDance-Seed/Depth-Anything-3) model produces a metric depth map and estimated camera intrinsics for each frame
 3. **Lift:** object distance = median depth over its mask pixels. Back-projecting the mask centroid through the estimated intrinsics gives the 3D position in meters.
-[![3D Localization Demo - live bird's-eye-view map - YouTube](https://img.youtube.com/vi/896trvifKMw/0.jpg)](https://www.youtube.com/watch?v=896trvifKMw)
+<!-- [![3D Localization Demo - live bird's-eye-view map - YouTube](https://img.youtube.com/vi/896trvifKMw/0.jpg)](https://www.youtube.com/watch?v=896trvifKMw) -->
 
 **Qualitative demo**
-[![Qualitative demo](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/20260722_032551.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/20260722_032551.png)
+[![Qualitative demo - 3D Localization Demo - live bird's-eye-view map - [YouTube]](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/20260722_032551.png)](https://www.youtube.com/watch?v=896trvifKMw)
 
 
 **Validation, no ground truth needed:** across **32,149 cars**, estimated width: **1.69 m**.
