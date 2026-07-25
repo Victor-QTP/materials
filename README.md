@@ -49,6 +49,8 @@
 | :---: | :---: |
 | [![Input (detection)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410.png) | [![Output (SAM3 masks)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410_SAM3.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410_SAM3.png) |
 
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
+
 ---
 
 ## 2. Edge Deployment: Distilled YOLOv8 Real-Time Inference
@@ -68,6 +70,8 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 
 *Demo footage credit: [source video](https://www.youtube.com/watch?v=EXFlYUM5FgI)*
 
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
+
 ---
 
 ## 3. Domain Transfer: Zero-Shot Generalization to Biomedical Imagery
@@ -79,6 +83,8 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 [![YOLOv8n Cell Detector](https://img.youtube.com/vi/wP3FX8Q1Qn0/0.jpg)](https://www.youtube.com/watch?v=wP3FX8Q1Qn0)
 
 *Footage credit: [Dr. Signal tech-bio](https://www.drsignal.com.tw/zh-hant-tw/tech-bio)*
+
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
 
@@ -103,6 +109,8 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 **Scope:** 3D localization, not full 3D detection. No yaw. Training-free routes to full boxes (pseudo-LiDAR L-shape fitting on the mask point clouds, VLM viewpoint binning): future work.
 
 *DA3 weights are CC BY-NC 4.0. This repo's code stays MIT.*
+
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
 
@@ -152,6 +160,8 @@ Results are per detector. Creating and fusing the specialists into the engine is
 
 [![GroundingDINO Training Curves](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/GroundingDINO_checkpoints_ciou_textfreeze_50epochs.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/GroundingDINO_checkpoints_ciou_textfreeze_50epochs.png)
 
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
+
 ---
 
 ## 6. Multimodal RAG: Rare Scenario & Object Finder
@@ -173,6 +183,8 @@ Results are per detector. Creating and fusing the specialists into the engine is
 
 - [Notebook](RAG_tutorial/vehicle_search_VLM_tutorial.ipynb) | [Requirements](RAG_tutorial/requirements.txt)
 
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
+
 ---
 
 ## Awards & Certificates
@@ -191,8 +203,12 @@ Supporting certificates:
 - [KIT Global Human Resource Development](Awards_and_certificates/KIT_Certificate%20of%20Completion_PHAN%20QUOC%20THANG.pdf)
 - [Folder README](Awards_and_certificates/README.md)
 
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
+
 ---
 
 ## License
 
 [MIT](LICENSE)
+
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
