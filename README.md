@@ -4,7 +4,7 @@
 
 - **~96% of human-label quality:** the engine's labels nearly match those of human annotators (BDD100K, evidence in [Section 1](#1-the-data-engine-training-free-auto-labeling))
 - **814.7 FPS on an RTX 3090:** a real-time detector trained purely on the engine's labels, no human labels anywhere in the loop ([Section 2](#2-edge-deployment-distilled-yolov8-real-time-inference))
-- **Works beyond driving, unchanged:** the same engine labeled biomedical microscopy imagery with zero tuning ([Section 3](#3-domain-transfer-zero-shot-generalization-to-biomedical-imagery))
+- **Beyond driving:** the same engine labeled biomedical microscopy imagery with zero training/fine tuning ([Section 3](#3-domain-transfer-zero-shot-generalization-to-biomedical-imagery))
 - **From 2D to metric 3D, still training-free (Independent):** detections lifted to positions in meters by composing frozen models, validated on ~32K cars ([Section 4](#4-metric-3d-localization-one-camera-no-lidar-no-calibration))
 
 **Quoc-Thang Phan (Victor)**, Computer Vision & Multimodal AI Engineer
