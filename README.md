@@ -212,6 +212,19 @@ Supporting certificates:
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+## Prior Projects
+
+Explored computer vision techniques across multiple domains:
+
+[![Prior Projects](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Previous_work/prior_projects.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Previous_work/prior_projects.png)
+
+- Built event-based camera perception systems for optical flow (E-RAFT) and object detection on automotive datasets.
+- Benchmarked gradient reconstruction attacks on privacy-preserving federated learning, devising a classifier-based leakage - metric: reconstructions achieved 95% classification accuracy, matching the original private data, exposing semantic leakage despite low pixel fidelity.
+- Modified SplattingAvatar (3D Gaussian Splatting) to drive controllable 3D avatars from AMASS SMPL-X poses, resolving - coordinate mismatches in the rendering pipeline.
+
+<div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
+
+---
 
 ## License
 
