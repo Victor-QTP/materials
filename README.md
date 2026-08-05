@@ -26,7 +26,8 @@
 5. [Optional Specialization: LoRA Adaptation & VLM Captioner Distillation](#5-optional-specialization-lora-adaptation--vlm-captioner-distillation)
 6. [Multimodal RAG: Rare Scenario & Object Finder](#6-multimodal-rag-rare-scenario--object-finder)
 7. [Awards & Certificates](#awards--certificates)
-8. [License](#license)
+8. [Prior Projects](#prior-projects)
+9. [License](#license)
 
 ---
 
