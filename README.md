@@ -2,7 +2,7 @@
 
 **A training-free data engine that labels driving datasets with zero human annotation.**
 
-**Part of ~NT$22M (~USD680K) from an NSTC project**
+**Part of a ~USD 680K (~NT$22M) National Project funded by Taiwan's NSTC**
 [道路潛在危險行為預測之次世代行車助理系統](https://arspb.nstc.gov.tw/NSCWebFront/modules/talentSearch/talentSearch.do?action=initRsm17new&rsNo=eabc9268145549d78bb7b7f4843db302)
 
 - **~96% of human-label quality:** the engine's labels nearly match those of human annotators (BDD100K, evidence in [Section 1](#1-the-data-engine-training-free-auto-labeling))
