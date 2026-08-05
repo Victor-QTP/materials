@@ -2,10 +2,15 @@
 
 **A training-free data engine that labels driving datasets with zero human annotation.**
 
+**Part of ~NT$22M (~USD680K) from an NSTC project**
+[道路潛在危險行為預測之次世代行車助理系統](https://arspb.nstc.gov.tw/NSCWebFront/modules/talentSearch/talentSearch.do?action=initRsm17new&rsNo=eabc9268145549d78bb7b7f4843db302)
+
 - **~96% of human-label quality:** the engine's labels nearly match those of human annotators (BDD100K, evidence in [Section 1](#1-the-data-engine-training-free-auto-labeling))
 - **814.7 FPS on an RTX 3090:** a real-time detector trained purely on the engine's labels, no human labels anywhere in the loop ([Section 2](#2-edge-deployment-distilled-yolov8-real-time-inference))
 - **Beyond driving:** the same engine labeled biomedical microscopy imagery with zero training/fine tuning ([Section 3](#3-domain-transfer-zero-shot-generalization-to-biomedical-imagery))
-- **From 2D to metric 3D, still training-free (Independent):** detections lifted to positions in meters by composing frozen models, validated on ~32K cars ([Section 4](#4-metric-3d-localization-one-camera-no-lidar-no-calibration))
+
+**Independent**
+- **From 2D to metric 3D, still training-free:** detections lifted to positions in meters by composing frozen models, validated on ~32K cars ([Section 4](#4-metric-3d-localization-one-camera-no-lidar-no-calibration))
 
 **Quoc-Thang Phan (Victor)**, Computer Vision & Multimodal AI Engineer
 [quocthang.phan.0430@gmail.com](mailto:quocthang.phan.0430@gmail.com) | [LinkedIn](https://www.linkedin.com/in/victor-quoc-thang-phan-60b932300)
