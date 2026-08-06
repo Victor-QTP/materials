@@ -127,7 +127,7 @@ The engine is training-free. LoRA is an **optional** layer for squeezing out ext
 
 Results are per detector. Creating and fusing the specialists into the engine is **future work, since a fused system with specialists would no longer be training-free.**
 
-- **Detector specialists:** LoRA-adapted three open-vocabulary detector architectures (OWLv2, OmDet-Turbo, Grounding DINO), freezing text encoders to preserve open-vocabulary capability. **+7.18, +4.50, and +2.71 mAP** respectively on BDD100K-val.
+- **Detector specialists:** LoRA-adapted three open-vocabulary detector architectures (OWLv2, OmDet-Turbo, Grounding DINO), freezing text encoders to preserve open-vocabulary capability. **+7.18, +4.50, and +2.71 mAP** respectively on BDD100K-val. (LoRA-tuned on BDD100K-train first 10,000 images)
 
 | Model | Baseline | After LoRA | Δ |
 |-------|----------|------------|---|
