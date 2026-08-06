@@ -1,16 +1,18 @@
-# Recent Projects: Zero-Shot Auto-Labeling, From 2D to metric 3D, Edge Deployment for Autonomous Driving Perception
+# Recent Projects: Autonomous Driving Perception
 
-**A training-free data engine that labels driving datasets with zero human annotation.**
+**Zero-Shot Auto-Labeling:A training-free data engine that labels driving datasets with zero human annotation.**
 
 **Part of a ~USD 680K (~NT$22M) National Project funded by Taiwan's NSTC**
 [道路潛在危險行為預測之次世代行車助理系統](https://arspb.nstc.gov.tw/NSCWebFront/modules/talentSearch/talentSearch.do?action=initRsm17new&rsNo=eabc9268145549d78bb7b7f4843db302)
 
-- **~96% of human-label quality:** the engine's labels nearly match those of human annotators (BDD100K, evidence in [Section 1](#1-the-data-engine-training-free-auto-labeling))
-- **814.7 FPS on an RTX 3090:** a real-time detector trained purely on the engine's labels, no human labels anywhere in the loop ([Section 2](#2-edge-deployment-distilled-yolov8-real-time-inference))
-- **Beyond driving:** the same engine labeled biomedical microscopy imagery with zero training/fine tuning ([Section 3](#3-domain-transfer-zero-shot-generalization-to-biomedical-imagery))
+- **Achieves ~96% of human-label quality:** The engine's labels nearly match those of human annotators (BDD100K, evidence in [Section 1](#1-the-data-engine-training-free-auto-labeling))
+- **A real-time detector, 814.7 FPS on an RTX 3090:**  Trained purely on the engine's labels, no human-annotated labels in the loop ([Section 2](#2-edge-deployment-distilled-yolov8-real-time-inference)).
+- **Beyond driving:** The same engine labeled biomedical microscopy imagery with zero training/fine-tuning ([Section 3](#3-domain-transfer-zero-shot-generalization-to-biomedical-imagery))
 
-**Independent**
-- **From 2D to metric 3D, still training-free:** detections lifted to positions in meters by composing frozen models, validated on ~32K cars ([Section 4](#4-metric-3d-localization-one-camera-no-lidar-no-calibration))
+**Independent (Ongoing)**
+- **From 2D to metric 3D, still training-free:** Detections lifted to positions in meters by composing frozen models, validated on ~32K cars ([Section 4](#4-metric-3d-localization-one-camera-no-lidar-no-calibration))
+- **Optional Specialization:** allows Mixture of Experts/Specialists (MoE) and AI-based verification/curation. ([Section 5](#5-optional-specialization-lora-adaptation--vlm-captioner-distillation))
+- **Multimodal RAG: Rare Scenario & Object Finder:**  Coarse-to-fine pipeline that retrieves target frames via Multimodal RAG, allowing the system to automatically generate labels for downstream task model training. ([Section 6](#6-multimodal-rag-rare-scenario--object-finder))
 
 **Quoc-Thang Phan (Victor)**, Computer Vision & Multimodal AI Engineer
 [quocthang.phan.0430@gmail.com](mailto:quocthang.phan.0430@gmail.com) | [LinkedIn](https://www.linkedin.com/in/victor-quoc-thang-phan-60b932300)
@@ -122,7 +124,9 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 ---
 
 ## 5. Optional Specialization: LoRA Adaptation & VLM Captioner Distillation
-*Independent (June 2026)*
+### From Mixture of Generalists to Mixture of Experts/Specialists (MoE)
+*Independent (Since June 2026)*
+
 The engine is training-free. LoRA is an **optional** layer for squeezing out extra domain performance.
 
 Results are per detector. Creating and fusing the specialists into the engine is **future work, since a fused system with specialists would no longer be training-free.**
@@ -139,8 +143,8 @@ Results are per detector. Creating and fusing the specialists into the engine is
 
 - [README](LoRA-vision-adaptation/README.md)
 
-### VLM Captioner Distillation: Generalist → Driving Specialist
-*Independent (June 2026)*
+### VLM Captioner Distillation:
+*Independent (Since June 2026)*
 - **Caption-based label verification:** a lightweight module that verifies detector-predicted labels by describing each detected object. I distill the 32B QwenVL3 teacher's captions of the objects detected by our ensemble on KITTI, then use these caption-crop pairs to LoRA-finetune the 8B student. **Tripled BLEU-4 (0.11 → 0.34) and nearly tripled CIDEr (1.07 → 3.01)**, with ROUGE-L up from 0.32 to 0.52.
 
 **VLM Captioner Distillation (32B teacher → 8B student) on KITTI**
@@ -173,6 +177,9 @@ Results are per detector. Creating and fusing the specialists into the engine is
 
 ## 6. Multimodal RAG: Rare Scenario & Object Finder
 *Independent extension (May 2026)*
+
+The pipeline filters target frames via Multimodal RAG, allowing the open-vocabulary model to automatically generate pseudo-labels for downstream task model training.
+
 **Natural-language search over unannotated driving footage: no fine-tuning, no manual browsing of 100K+ frames.** Two parallel Qdrant indexes (CLIP ViT-g-14 image embeddings + Nomic text embeddings over QwenVL captions) fused into ranked results, with grounded Q&A over the retrieved frames.
 
 [![RAG Architecture](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/ExtensionB_Pipeline.PNG)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/ExtensionB_Pipeline.PNG)
