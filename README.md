@@ -109,7 +109,7 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 **Qualitative demo - 3D Localization Demo - live bird's-eye-view map**
 
 [![Qualitative demo - YouTube](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/20260722_032551.png)](https://www.youtube.com/watch?v=896trvifKMw)
-[Qualitative demo (YouTube)](https://www.youtube.com/watch?v=MUm59Mw1z0E)
+[Qualitative demo (YouTube)](https://www.youtube.com/watch?v=896trvifKMw)
 
 **Validation, no ground truth needed:** across **32,149 cars**, estimated width: **1.69 m**.
 
