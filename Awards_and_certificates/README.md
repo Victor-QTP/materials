@@ -37,3 +37,8 @@ Maibara, Japan · 2017
 **IELTS**
 
 📄 [View Certificate](IELTS-Thang0001.pdf)
+
+## Chinese Proficiency (Intermediate)
+**Chinese Language Proficiency**
+
+📄 [View Certificate](Chinese_language_cert.jpg)

@@ -195,6 +195,7 @@ The C++ project is under active development. **INT8 inference is currently being
 Supporting certificates:
 
 - [IELTS 7.5 / CEFR C1](Awards_and_certificates/IELTS-Thang0001.pdf)
+- [Chinese Proficiency (Intermediate)](Awards_and_certificates/Chinese_language_cert.jpg)
 - [Yanmar Agri R&D Internship](Awards_and_certificates/Certificate-Yanmar.pdf)
 - [KIT Bio Tech & IT Spring School](Awards_and_certificates/Certificate_KIT_BioTech_IT_Spring_School%20.pdf)
 - [KIT Global Human Resource Development](Awards_and_certificates/KIT_Certificate%20of%20Completion_PHAN%20QUOC%20THANG.pdf)
