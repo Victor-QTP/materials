@@ -176,7 +176,7 @@ After the collaborative project ended, I continued the deployment work independe
 
 **Same runtime, different models and label spaces.** The model and class list are supplied at runtime, so the inference pipeline can run both the stock **COCO 80-class YOLOv8n** model and my project's **driving model** without changes to the core inference code, within the currently supported 640x640 YOLOv8 detection-model constraint.
 
-| COCO 80-class model: live camera | 10-class driving model: road footage |
+| 10-class driving model: road footage | COCO 80-class model: live camera |
 | :---: | :---: |
 | ![10-class driving-model inference](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/cpp_onnx_camera/singapore_driving_demo.png) | ![COCO 80-class YOLOv8n live-camera inference](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/cpp_onnx_camera/coco_live_camera.png) |
 
