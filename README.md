@@ -178,7 +178,7 @@ After the collaborative project ended, I continued the deployment work independe
 
 | COCO 80-class model: live camera | 10-class driving model: road footage |
 | :---: | :---: |
-| ![10-class driving-model inference](cpp_onnx_camera/singapore_driving_demo.png) | ![COCO 80-class YOLOv8n live-camera inference](cpp_onnx_camera/coco_live_camera.png) |
+| ![10-class driving-model inference](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/cpp_onnx_camera/singapore_driving_demo.png) | ![COCO 80-class YOLOv8n live-camera inference](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/cpp_onnx_camera/coco_live_camera.png) |
 
 The C++ project is under active development. **INT8 inference is currently being added**; the existing FP32 ONNX model is retained as the source model for static quantization, while the current C++ inference path supports FP16 tensors.
 
