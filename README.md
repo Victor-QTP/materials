@@ -45,9 +45,11 @@
 2. **Extend to masks:** [SAM3](SAM3/README.md), now as a promptable segmenter rather than a detector, turns the fused boxes into pixel-level instance masks
 3. **Extend to captions:** [QwenVL](Object_captioning_Qwen2VL/README.md) adds a semantic caption to each detected object
 **The whole pipeline runs on a single 24 GB GPU** through a [Gradio auto-labeling UI](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/UI/UI_demo.png): 1-click annotation, ontology testing, and captioning. Full architecture: [Data Engine README](Data_engine/README.md) ([PDF overview](Data_engine/System_overview.pdf)).
+
 | Detections (ensemble) & captions | Instance masks (SAM3) |
 | :---: | :---: |
 | [![Input (detection)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410.png) | [![Output (SAM3 masks)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410_SAM3.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/SAM3/BDD100K_val_c415a08c-50060410_SAM3.png) |
+
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
@@ -60,47 +62,58 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 | **ONNX Runtime** | FP32 | RTX 3090 | 2.9 ms | **345.3 FPS** |
 | **TensorRT** | FP16 | RTX 3090 | 1.2 ms | **814.7 FPS** |
 | **Edge Target** | FP16 | Jetson Orin Nano 8GB | ~22-26 ms | **~38-45 FPS** (projected) |
-**Real-time inference demos:** [TensorRT](https://www.youtube.com/watch?v=MUm59Mw1z0E) | [ONNX Runtime](https://www.youtube.com/watch?v=e6DNVmk0I_g) | [PyTorch](https://www.youtube.com/watch?v=Om5kYzBqwuw)
+
+**Real-time inference demos:** |[TensorRT](https://www.youtube.com/watch?v=MUm59Mw1z0E) | [ONNX Runtime](https://www.youtube.com/watch?v=e6DNVmk0I_g) | [PyTorch](https://www.youtube.com/watch?v=Om5kYzBqwuw)
 
 [![YOLOv8 Nano Distillation Demo](https://img.youtube.com/vi/MUm59Mw1z0E/0.jpg)](https://www.youtube.com/watch?v=MUm59Mw1z0E)
 
 *Demo footage credit: [source video](https://www.youtube.com/watch?v=EXFlYUM5FgI)*
+
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+
 ## 3. Domain Transfer: Zero-Shot Generalization to Biomedical Imagery
 
 **The same engine, unchanged,** labeled noisy **phase-contrast microscopy** (stem cell cultures) with no manual annotation and no domain-specific tuning. A YOLOv8-Nano distilled from those labels runs at **820.8 FPS** (TensorRT FP16, RTX 3090, same optimization pipeline and Jetson target as above).
+
 **Cell detection demos:** [TensorRT](https://www.youtube.com/watch?v=wP3FX8Q1Qn0) | [ONNX Runtime](https://www.youtube.com/watch?v=E8D2qqdhG7I) | [PyTorch](https://www.youtube.com/watch?v=O2x_RBgCVEg)
 
 [![YOLOv8n Cell Detector](https://img.youtube.com/vi/wP3FX8Q1Qn0/0.jpg)](https://www.youtube.com/watch?v=wP3FX8Q1Qn0)
 
 *Footage credit: [Dr. Signal tech-bio](https://www.drsignal.com.tw/zh-hant-tw/tech-bio)*
+
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+
 ## 4. Metric 3D Localization: One Camera, No LiDAR, No Calibration
 
 *Independent extension (July 2026), built after and on top of the project above.*
 
 **A single ordinary camera is enough.** 2D detections are lifted to **3D positions in meters** from monocular dashcam footage: no LiDAR, no stereo, no calibration files, no training. Camera parameters are estimated from the images themselves.
+
 1. **Input:** 2D detection results, boxes and instance masks, from any detector (this demo uses SAM3)
 2. **Depth:** a frozen [Depth Anything 3](https://github.com/ByteDance-Seed/Depth-Anything-3) model produces a metric depth map and estimated camera intrinsics for each frame
 3. **Lift:** object distance = median depth over its mask pixels. Back-projecting the mask centroid through the estimated intrinsics gives the 3D position in meters.
+
 **Qualitative demo - 3D Localization Demo - live bird's-eye-view map**
 
 [![Qualitative demo - YouTube](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/20260722_032551.png)](https://www.youtube.com/watch?v=896trvifKMw)
 [Qualitative demo (YouTube)](https://www.youtube.com/watch?v=896trvifKMw)
 
 **Validation, no ground truth needed:** across **32,149 cars**, estimated width: **1.69 m**.
+
 [![Car width validation](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/car_width_hist.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/3D_localization/car_width_hist.png)
 
 **Scope:** 3D localization, not full 3D detection. No yaw. Training-free routes to full boxes (pseudo-LiDAR L-shape fitting on the mask point clouds, VLM viewpoint binning): future work.
 
 *DA3 weights are CC BY-NC 4.0. This repo's code stays MIT.*
+
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+
 ## 5. Optional Specialization: LoRA Adaptation & VLM Captioner Distillation
 ### From Mixture of Generalists to Mixture of Experts/Specialists (MoE)
 *Independent (Since June 2026)*
@@ -108,6 +121,7 @@ A **YOLOv8-Nano** trained *entirely* on the engine's annotations, then optimized
 The engine is training-free. LoRA is an **optional** layer for squeezing out extra domain performance.
 
 Results are per detector. Creating and fusing the specialists into the engine is **future work, since a fused system with specialists would no longer be training-free.**
+
 - **Detector specialists:** LoRA-adapted three open-vocabulary detector architectures (OWLv2, OmDet-Turbo, Grounding DINO), freezing text encoders to preserve open-vocabulary capability. **+7.18, +4.50, and +2.71 mAP** respectively on BDD100K-val.
 
 | Model | Baseline | After LoRA | Δ |
@@ -115,12 +129,15 @@ Results are per detector. Creating and fusing the specialists into the engine is
 | OWLv2-base-patch16 | 20.63% | **27.81%** | +7.18% |
 | OmDet-Turbo-Swin | 17.14% | **21.64%** | +4.50% |
 | GroundingDINO-tiny | 20.89% | **23.60%** | +2.71% |
+
 *mAP@[0.50:0.95], LoRA-tuned on BDD100K-train first 10,000 images and evaluated on BDD100K validation set.*
 
 - [README](LoRA-vision-adaptation/README.md)
+
 ### VLM Captioner Distillation:
 *Independent (Since June 2026)*
 - **Caption-based label verification:** a lightweight module that verifies detector-predicted labels by describing each detected object. I distill the 32B QwenVL3 teacher's captions of the objects detected by our ensemble on KITTI, then use these caption-crop pairs to LoRA-finetune the 8B student. **Tripled BLEU-4 (0.11 → 0.34) and nearly tripled CIDEr (1.07 → 3.01)**, with ROUGE-L up from 0.32 to 0.52.
+
 **VLM Captioner Distillation (32B teacher → 8B student) on KITTI**
 
 | Metric | Before | After | Δ |
@@ -130,21 +147,25 @@ Results are per detector. Creating and fusing the specialists into the engine is
 | CIDEr | 1.07 | **3.01** | +1.94 |
 
 *BLEU-4: exact 1-to-4 word GT match. ROUGE-L: longest in-order GT word sequence. CIDEr: similarity to descriptive GT phrases.*
+
 #### Training curves
 
 **OWLv2** ([google/owlv2-base-patch16-ensemble](https://huggingface.co/google/owlv2-base-patch16-ensemble))
 
 [![OWLv2 Training Curves](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/OWLv2_LoRA_checkpoints_text_frozen_b16_ciou_training_losses.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/OWLv2_LoRA_checkpoints_text_frozen_b16_ciou_training_losses.png)
+
 **OmDet-Turbo** ([omlab/omdet-turbo-swin-tiny-hf](https://huggingface.co/omlab/omdet-turbo-swin-tiny-hf))
 
 [![OmDet-Turbo Training Curves](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/Omdet_LoRA_checkpoints_ciou_50epochs.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/Omdet_LoRA_checkpoints_ciou_50epochs.png)
 
 **Grounding DINO** ([IDEA-Research/grounding-dino-tiny](https://huggingface.co/IDEA-Research/grounding-dino-tiny))
+
 [![GroundingDINO Training Curves](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/GroundingDINO_checkpoints_ciou_textfreeze_50epochs.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/LoRA-vision-adaptation/GroundingDINO_checkpoints_ciou_textfreeze_50epochs.png)
 
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+
 ## 6. Multimodal RAG: Rare Scenario & Object Finder
 *Independent extension (May 2026)*
 
@@ -152,13 +173,16 @@ The pipeline filters target frames via Multimodal RAG, allowing the open-vocabul
 **Natural-language search over unannotated driving footage: no fine-tuning, no manual browsing of 100K+ frames.** Two parallel Qdrant indexes (CLIP ViT-g-14 image embeddings + Nomic text embeddings over QwenVL captions) fused into ranked results, with grounded Q&A over the retrieved frames.
 
 [![RAG Architecture](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/ExtensionB_Pipeline.PNG)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/ExtensionB_Pipeline.PNG)
+
 *Three-stage architecture as run in the demo below: CLIP retrieval finds the rare scene, QwenVL captions and answers over it, and retrieved frames feed the auto-labeling engine (Section 1), focusing labeling effort on rare objects.*
 
 **Query:** *"What vehicles are in the image with the yellow taxi?"*
+
 [![RAG Demo - Retrieved Scene](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/rag_demo_yellow_taxi.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/RAG_tutorial/rag_demo_yellow_taxi.png)
 
 **Top-1 retrieved scene** (frame_3800): a bustling urban street with a yellow taxi, several cars, a motorcycle, and various storefronts and signs.
 **Answer:** *In the image with the yellow taxi, there are several cars and a motorcycle.*
+
 **Uses:** rare-scenario mining, edge-case curation, pre-filtering data for the auto-labeling pipeline, grounded Q&A that reduces VLM hallucination.
 
 - [Notebook](RAG_tutorial/vehicle_search_VLM_tutorial.ipynb) | [Requirements](RAG_tutorial/requirements.txt)
@@ -166,6 +190,7 @@ The pipeline filters target frames via Multimodal RAG, allowing the open-vocabul
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+
 ## 7. Independent C++ Deployment: ONNX Runtime CUDA/FP16
 
 - [Section README](cpp_onnx_camera/README.md)
@@ -185,6 +210,7 @@ The C++ project is under active development. **INT8 inference is currently being
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+
 ## 8. Awards & Certificates
 
 [**Best Paper Award, ICICT 2026 (Honolulu, HI, USA)**](https://dl.acm.org/doi/10.1145/3803291.3803339)
@@ -192,6 +218,7 @@ The C++ project is under active development. **INT8 inference is currently being
 [Paper](https://dl.acm.org/doi/10.1145/3803291.3803339) | [Certificate](Awards_and_certificates/ICICT_26_BestPaperAward_r.pdf)
 
 [![Best Paper Award - ICICT 2026](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Awards_and_certificates/ICICT_26_bestpaper.jpg)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Awards_and_certificates/ICICT_26_bestpaper.jpg)
+
 Supporting certificates:
 
 - [IELTS 7.5 / CEFR C1](Awards_and_certificates/IELTS-Thang0001.pdf)
@@ -203,17 +230,20 @@ Supporting certificates:
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+
 ## 9. Prior Projects
 
 Explored computer vision techniques across multiple domains:
 
 [![Prior Projects](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Previous_work/prior_projects.png)](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/Previous_work/prior_projects.png)
+
 - Built event-based camera perception systems for optical flow (E-RAFT) and object detection on automotive datasets.
 - Benchmarked gradient reconstruction attacks on privacy-preserving federated learning, devising a classifier-based leakage - metric: reconstructions achieved 95% classification accuracy, matching the original private data, exposing semantic leakage despite low pixel fidelity.
 - Modified SplattingAvatar (3D Gaussian Splatting) to drive controllable 3D avatars from AMASS SMPL-X poses, resolving - coordinate mismatches in the rendering pipeline.
 <div align="center"><b><a href="#table-of-contents">&#11014; Back to Table of Contents</a></b></div>
 
 ---
+
 ## 10. License
 
 [MIT](LICENSE)
