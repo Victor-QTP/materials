@@ -19,6 +19,9 @@ Only 640x640 exports are supported by the current implementation. See [Model Inp
 
 ## Requirements
 
+**Platform**
+- Current bundled runtime targets Linux x86-64. The C++ inference pipeline is portable to ARM64 platforms such as NVIDIA Jetson with architecture-compatible runtime dependencies.
+
 **Hardware**
 - NVIDIA GPU with CUDA 12.x and cuDNN **8.x**. This is a hard version pin, not a suggestion: the vendored ONNX Runtime build is 1.18.0, which links against cuDNN 8. ONNX Runtime 1.18.1 would require cuDNN 9 instead, so upgrading the ORT build without also upgrading cuDNN (or vice versa) breaks the link at runtime.
 - A camera device (e.g. `/dev/video0`) only if you intend to use `--camera` mode. Not needed for `--input` (batch) or `--stream` (file) modes.
