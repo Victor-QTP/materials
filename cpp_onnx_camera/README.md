@@ -194,3 +194,9 @@ Preprocessing always resizes the incoming frame to 640x640 regardless of source 
 ## Roadmap: INT8 Quantization
 
 INT8 inference is currently under development. `models/best_singapore_fp32_640.onnx` is retained as the source model for static quantization. The current C++ inference path supports FP16 tensors only, so INT8 integration will require an FP32-compatible tensor path for quantized ONNX models.
+
+## Demo
+
+| 10-class driving model: road footage | COCO 80-class model: live camera |
+| :---: | :---: |
+| ![10-class driving-model inference](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/cpp_onnx_camera/singapore_driving_demo.png) | ![COCO 80-class YOLOv8n live-camera inference](https://cdn.jsdelivr.net/gh/Victor-QTP/materials@main/cpp_onnx_camera/coco_live_camera.png) |
